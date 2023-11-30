@@ -1,0 +1,21 @@
+#Напишите программу с классом Mother от которого наследуется класс Daughter.
+
+#Сделайте так, чтобы результат print(object) был разный.
+
+#Воспользуйтесь принципами полиморфизма, наследования и инкапсуляции.
+
+class Mother:
+    def __obj(self):
+        print(object)
+        
+class Daughter(Mother):
+    def _obj(self):
+        print(object)
+a = Mother()
+print(a.obj())
+
+
+b = Daughter()
+print(b.obj())
+
+
