@@ -1,0 +1,26 @@
+#Реализуйте свой класс Complex для комплексных чисел, аналогично встроенной реализации complex:
+#Добавьте инициализатор класса
+#Реализуйте основные математические операции
+#Реализуйте операцию модуля (abs, вызываемую как |c|)
+#Оба класса должны давать осмысленный вывод как при print, так и просто при вызове в ячейке
+
+class Complex():
+
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def __add__(self, other):
+        return Complex(self.x + other.x, self.y + other.y)
+    def __mul__(self, other):
+        return Complex(self.x * other.x-self.y * other.y, self.x * other.y+self.y * other.x)
+    def __sub__(self, other):
+        return Complex(self.x - other.x, self.y - other.y)
+    def __truediv__(self, other):
+        return Complex((self.x * other.x+self.y * other.y)/(self.x**2+ self.y **2)**0.5, (self.x * other.y-self.y * other.x)/(other.x**2+ other.y **2)**0.5)
+    def __abs__(self):
+        return ((self.x**2+ self.y **2)**0.5)
+
+A = Complex(1, 2)
+B = Complex(3, 4)
+C = abs(B)
+print(C)
