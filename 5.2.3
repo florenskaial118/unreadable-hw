@@ -1,0 +1,24 @@
+#Реализйте класс Animal. Внутри объявите поле для имени и возраста.
+#От класса Animal унаследуйте класс Zebra и Dolphin.
+#Оба класса могут вернуть описание, содержащее имя, возраст и какую-то доп.информацию, например, что это за вид животного.
+#Воспользуйтесь принципами полиморфизма, наследования и инкапсуляции.
+
+class Animal:
+    # конструктор
+    def __init__(self, n, a):
+        self.name = n
+        self.age = a
+    def animal(self, animal):
+        return animal
+class Zebra(Animal):
+    def f(self, animal = 'zebra'):
+        return(self.name ,self.age, self.animal(animal))
+    
+class Dolphin(Animal):
+    def f(self, animal = "doplhin"):
+        return(self.name ,self.age, self.animal(animal))
+
+b = Zebra("Zebrula", 2)
+print(b.f())
+c = Dolphin("Deplhula",12)
+print(c.f())
