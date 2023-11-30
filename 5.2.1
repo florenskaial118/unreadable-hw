@@ -1,0 +1,25 @@
+#Напишите программу, которая объявляет класс Shape, конструктор которого принимает ширину и высоту.
+
+#После этого унаследуйте от него класс Triangle и Rectangle. Реализуйте метод area(), который возвращает площадь этих фигур.
+
+#Продемонстрируйте работоспособность программы.
+class Shape:
+    # конструктор
+    def __init__(self, w, h):
+        self.width = w
+        self.height = h
+
+class Triangle(Shape):
+    def area(self):
+        return (self.width * self.height*0.5)
+    
+class Rectangle(Shape):
+    def area(self):
+        return (self.width * self.height)
+    
+
+b = Triangle(1, 2)
+print(b.area())
+c = Rectangle(1,2)
+print(c.area())
+
