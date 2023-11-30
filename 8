@@ -1,0 +1,150 @@
+#Упражнение 1
+#Вам дана функция на языке python, Требуется переписать данную функцию не используя цикл for. ****:
+def print_map(function, iterable):
+    for i in iterable:
+        print(function(i))
+
+#Упражнение 2
+#Напишите генератор, выводящий первые n чисел Фибоначчи. ***
+A = [0,1]
+def fib(A):
+    A.append(A[-1]+A[-2])
+    return A[-1]
+n = int(input())
+print(0)
+print(1)
+
+for i in range(n-2):
+    print(fib(A))
+    
+#Упражнение 3
+#Реализуйте аналог функций zip, map, enumerate. ***
+
+#zip
+names = ["Alex", "Bob", "Alice", "John", "Ann"]
+age = [25, 17, 34, 24, 42]
+sex = ["M", "M", "F", "M", "F"]
+
+Zip = []
+for i in range(len(names)):
+    d = {}
+    d['name'] = names[i]
+    d['age'] = age[i]
+    d['sex'] = sex[i]
+    Zip.append(d)
+
+for i in Zip:
+    if len(i) == 3:
+        print("name: {name:>10} age: {age:3} sex: {sex:2}".format(**i))
+#map     
+def baz(value):
+    return value * value
+
+lst = [1, 2, 3, 4, 5]
+
+for i in lst:
+    print(baz(i))
+    
+#enumerate
+
+names = ["Alex", "Bob", "Alice", "John", "Ann"]
+En = []
+for i in range(len(names)):
+    d = {}
+    d['name'] = names[i]
+    d['number'] = i+1
+    En.append(d)
+    
+for i in En:
+    print("{number:02}: {name:>7}".format(**i))
+    
+#Упражнение №1
+
+#Написать функцию, принимающую 2 списка и возвращающую декартово произведение (использовать itertools.product)
+import itertools
+from itertools import product
+def get_cartesian_product(a, b):
+    return list(product(a,b))
+
+print(get_cartesian_product([1, 2], [3, 4]))
+
+#get_cartesian_product([1, 2], [3, 4]) == [(1, 3), (1, 4), (2, 3), (2, 4)]
+
+#Упражнение №2
+
+#Написать функцию, принимающую строку s и число n и возвращающую всевозможные перестановки из n символов в s строке в лексикографическом(!) 
+#порядке (использовать itertools.permutations)
+from itertools import permutations
+def get_permutations(s, n):
+    return sorted([''.join(p) for p in permutations(s,n)])
+    
+print(get_permutations("cat", 2))
+
+#get_permutations("cat", 2) == ["ac", "at", "ca", "ct", "ta", "tc"]
+
+#Упражнение №3
+
+#Реализовать функцию get_combinations. Должна принимать строку s и число k и возвращать все возможные комбинации из символов в строке s с длинами <= k 
+#(использовать itertools.combinations)
+
+from itertools import combinations
+def get_combinations(s, n):
+    L = []
+    Ans = []
+    for i in range(1,n+1):
+        L.append(sorted([''.join(p) for p in combinations(s,i)]))
+    for i in L:
+        for j in i:
+            Ans.append(j)
+    return Ans
+
+print(get_combinations("cat", 2))
+    
+#get_combinations("cat", 2) == ["a", "c", "t", "ac", "at", "ct"]
+
+#Упражнение №4
+
+#Функция должна принимать строку s и число k и возвращать все возможные комбинации из символов в строке s с длинами = k с повторениями
+#(использовать itertools.combinations_with_replacement)
+
+from itertools import combinations_with_replacement
+def get_combinations_with_r(s, n):
+    return (sorted([''.join(p) for p in combinations_with_replacement(s,n)]))
+
+print(get_combinations_with_r("cat", 2))
+
+#get_combinations_with_r("cat", 2) == ["aa", "ac", "at", "cc", "ct", "tt"]
+
+#Упражнение №5
+
+#Написать функцию, которая подсчитывает количество подряд идующих символов в строке 
+#(использовать itertools.groupby)
+from itertools import groupby
+def compress_string(s):
+    L = []
+    for i, j in groupby(s):
+        L.append((len(list(j)),int(i)))
+    return L
+        
+print(compress_string('1222311'))
+
+#compress_string('1222311') == [(1, 1), (3, 2), (1, 3), (2, 1)]
+
+#Упражнение №6
+
+#В функцию передается список списков. Нужно вернуть максимум, который достигает выражение $(a_1^2 + a_2^2 + ... + a_n^2) % m $. 
+#Где ai --- максимальный элемент из i-ого списка (использовать функцию из itertools)
+
+def maximize(lists, m):
+    L = sorted( itertools.product(*lists))
+    return((L[-1][0]**2+L[-1][1]**2+L[-1][2]**2)%m)
+
+lists = [
+    [5, 4],
+    [7, 8, 9],
+    [5, 7, 8, 9, 10]
+]
+
+print(maximize(lists, m=1000))
+
+#maximize(lists, m=1000) == 206
